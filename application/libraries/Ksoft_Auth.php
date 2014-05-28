@@ -3,8 +3,8 @@
     if ( ! defined('BASEPATH')) 
         exit('No direct script access allowed'); 
     
-define('ISACTIVATED', 1);
-define('ISNOTACTIVATED', 0);
+    define('ISACTIVATED', 1);
+    define('ISNOTACTIVATED', 0);
 
     class Ksoft_Auth {
         
@@ -22,7 +22,7 @@ define('ISNOTACTIVATED', 0);
 
                     $this->ci_global->session->set_userdata("user_not_activated");
                 }else {
-                    if($this->isPasswordMaches($array['password'], $user_info->password)) { // If success
+                    if($this->isPasswordMatches($array['password'], $user_info->password)) { // If success
                         $userSession = array(
                             "user_id" => $user_info->id,
                             "user_username" => $user_info->username
@@ -42,7 +42,7 @@ define('ISNOTACTIVATED', 0);
             $this->ci_global->session->sess_destry();
         }
         
-        function isPasswordMaches($incoming_password, $db_password) {
+        function isPasswordMatches($incoming_password, $db_password) {
             if($incoming_password === $db_password) return TRUE;
             return FALSE;
         }
